@@ -18,6 +18,15 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); //Movement Animation 
 
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            //timer between attacks tba
+            animator.SetTrigger("Attack1");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            animator.SetTrigger("Attack2");
+        }
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
