@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Animator animator;
+
     public float runSpeed = 5f;
-    float horizontalMove = 0f;
+    public float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
 
@@ -14,10 +16,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); //Movement Animation 
 
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
+            animator.SetBool("IsJumping", true);
         }
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
@@ -27,6 +31,12 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+    }
+
+    public void OnLanding()
+    {
+        
+        animator.SetBool("IsJumping", false);
     }
 
     void FixedUpdate()
