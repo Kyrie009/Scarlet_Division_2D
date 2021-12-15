@@ -6,11 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    public Animator weaponAnimator;
 
     public float runSpeed = 5f;
     public float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+
+    public float attackCooldown = 0.5f;
 
     // Update is called once per frame
     void Update()
@@ -18,15 +21,28 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove)); //Movement Animation 
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (attackCooldown > 0)
         {
-            //timer between attacks tba
-            animator.SetTrigger("Attack1");
+            attackCooldown -= Time.deltaTime;
         }
-        if (Input.GetKeyDown(KeyCode.L))
+
+        if (attackCooldown < 0)
         {
-            animator.SetTrigger("Attack2");
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                //timer between attacks tba
+                animator.SetTrigger("Attack1");
+                weaponAnimator.SetTrigger("Attack1");
+                attackCooldown = 0.5f;
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                animator.SetTrigger("Attack2");
+                weaponAnimator.SetTrigger("Attack2");
+                attackCooldown = 0.5f;
+            }
         }
+
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
