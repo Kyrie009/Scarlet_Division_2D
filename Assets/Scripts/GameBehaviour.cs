@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class GameBehaviour : MonoBehaviour
 {
-        //Managers
-        protected static GameManager _GM { get { return GameManager.INSTANCE; } }
-     
+    //Managers
+    protected static GameManager _GM { get { return GameManager.INSTANCE; } }
+    protected static UIManager _UI { get { return UIManager.INSTANCE; } }
+    //Player
+    protected static Player _P { get { return Player.INSTANCE; } }
 
 
-        //Universal Functions
 
-        /// <summary>
-        /// Shuffles a list using Unity's Random
-        /// </summary>
-        /// <typeparam name="T">The data type</typeparam>
-        /// <param name="_list">The list to shuffle</param>
-        /// <returns>Returns a shuffled List</returns>
-        public static List<T> ShuffleList<T>(List<T> _list)
+    //Universal Functions
+
+    /// <summary>
+    /// Shuffles a list using Unity's Random
+    /// </summary>
+    /// <typeparam name="T">The data type</typeparam>
+    /// <param name="_list">The list to shuffle</param>
+    /// <returns>Returns a shuffled List</returns>
+    public static List<T> ShuffleList<T>(List<T> _list)
         {
             for (int i = 0; i < _list.Count; i++)
             {
