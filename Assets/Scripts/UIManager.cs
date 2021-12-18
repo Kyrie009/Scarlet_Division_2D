@@ -23,11 +23,15 @@ public class UIManager : Singleton<UIManager>
     {
         gameOverScreen.SetActive(false);
         menuScreen.SetActive(false);
-        weaponScreen.SetActive(false);
-        itemScreen.SetActive(false);
-        materialScreen.SetActive(false);
         healthBar.maxValue = _P.maxHealth;
         corruptionBar.maxValue = _P.maxCorruption;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowPauseMenu();
+        }
     }
 
     //Updates player's new status
@@ -49,12 +53,42 @@ public class UIManager : Singleton<UIManager>
 
         corruptionText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //Display timer in minute:second format
     }
-
+    //UI Navigation
+    public void ShowPauseMenu()
+    {
+        menuScreen.SetActive(true);
+        ShowWeapons();
+        GameEvents.ReportGamePause();
+    }
+    public void ShowWeapons()
+    {
+        weaponScreen.SetActive(true);
+        itemScreen.SetActive(false);
+        materialScreen.SetActive(false);
+    }
+    public void ShowItems()
+    {
+        weaponScreen.SetActive(false);
+        itemScreen.SetActive(true);
+        materialScreen.SetActive(false);
+    }
+    public void ShowMaterials()
+    {
+        weaponScreen.SetActive(false);
+        itemScreen.SetActive(false);
+        materialScreen.SetActive(true);
+    }
+    public void ReturnFromMenu()
+    {
+        menuScreen.SetActive(false);
+        GameEvents.ReportGamePlaying();
+    }
     public void GameOver(Player _p)
     {
         gameOverScreen.SetActive(true);
+        GameEvents.ReportGameOver();
     }
-
+    //Events
     private void OnEnable()
     {
         GameEvents.OnPlayerDied += GameOver;

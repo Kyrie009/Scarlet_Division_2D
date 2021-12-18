@@ -11,18 +11,6 @@ public class GameManager : Singleton<GameManager>
     //enums
     public GameState gameState;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     //GameStates
     public void ChangeGameState(GameState _gamestate)
     {
@@ -34,21 +22,36 @@ public class GameManager : Singleton<GameManager>
         switch (gameState)
         {
             case GameState.Start:
+                Cursor.visible = true;
                 Time.timeScale = 1;
-                GameEvents.ReportGameStart();
                 break;
             case GameState.Playing:
+                Cursor.visible = false;
                 Time.timeScale = 1;
-                GameEvents.ReportGamePlaying();
                 break;
             case GameState.Paused:
+                Cursor.visible = true;
                 Time.timeScale = 0;
-                GameEvents.ReportGamePause();
                 break;
             case GameState.GameOver:
+                Cursor.visible = true;
                 Time.timeScale = 0;
-                GameEvents.ReportGameOver();
                 break;
         }
+    }
+
+    private void OnEnable()
+    {
+        GameEvents.OnStart += ChangeGameState;
+        GameEvents.OnPlaying += ChangeGameState;
+        GameEvents.OnPause += ChangeGameState;
+        GameEvents.OnGameOver += ChangeGameState;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnStart -= ChangeGameState;
+        GameEvents.OnPlaying -= ChangeGameState;
+        GameEvents.OnPause -= ChangeGameState;
+        GameEvents.OnGameOver -= ChangeGameState;
     }
 }

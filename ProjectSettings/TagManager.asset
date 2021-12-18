@@ -46,3 +46,42 @@ TagManager:
   - name: BackGround
     uniqueID: 2227646087
     locked: 0
+  - name: Layer 6
+    uniqueID: 158825697
+    locked: 0
+  - name: Layer 5
+    uniqueID: 3888424327
+    locked: 0
+  - name: Layer 4
+    uniqueID: 3033285517
+    locked: 0
+  - name: Layer 3
+    uniqueID: 817881521
+    locked: 0
+  - name: Layer 2
+    uniqueID: 3513893257
+    locked: 0
+  - name: Layer 1
+    uniqueID: 1476560309
+    locked: 0
+  - name: Layer 0
+    uniqueID: 1769374891
+    locked: 0
+  - name: Layer -1
+    uniqueID: 2400654323
+    locked: 0
+  - name: Layer -2
+    uniqueID: 3548779287
+    locked: 0
+  - name: Layer -3
+    uniqueID: 2469865045
+    locked: 0
+  - name: Layer -4
+    uniqueID: 2875674699
+    locked: 0
+  - name: Layer -5
+    uniqueID: 1334452453
+    locked: 0
+  - name: Layer -6
+    uniqueID: 3077245373
+    locked: 0

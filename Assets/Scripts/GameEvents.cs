@@ -4,10 +4,10 @@ using System;
 public static class GameEvents
 {
     //GameStates
-    public static event Action OnStart = null;
-    public static event Action OnPlaying = null;
-    public static event Action OnPause = null;
-    public static event Action OnGameOver = null;
+    public static event Action<GameState> OnStart = null;
+    public static event Action<GameState> OnPlaying = null;
+    public static event Action<GameState> OnPause = null;
+    public static event Action<GameState> OnGameOver = null;
     //Enemy
     public static event Action<Enemy> OnEnemyDied = null;
     //Timer related stuff
@@ -21,19 +21,19 @@ public static class GameEvents
     //GameStates
     public static void ReportGameStart()
     {
-        OnStart?.Invoke();
+        OnStart?.Invoke(GameState.Start);
     }
     public static void ReportGamePlaying()
     {
-        OnPlaying?.Invoke();
+        OnPlaying?.Invoke(GameState.Playing);
     }
     public static void ReportGamePause()
     {
-        OnPause?.Invoke();
+        OnPause?.Invoke(GameState.Paused);
     }
     public static void ReportGameOver()
     {
-        OnGameOver?.Invoke();
+        OnGameOver?.Invoke(GameState.GameOver);
     }
     //Enemy Status
     public static void ReportEnemyDied(Enemy _enemy)
