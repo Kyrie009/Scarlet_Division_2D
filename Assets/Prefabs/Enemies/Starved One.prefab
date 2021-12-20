@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3874844210501768949}
   - component: {fileID: 3874844210501768946}
   - component: {fileID: 3874844210501768947}
-  - component: {fileID: 3874844210501768951}
   - component: {fileID: 3874844210287718129}
   - component: {fileID: 3874844210287718128}
   - component: {fileID: 3874844210287718131}
@@ -119,25 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: b4ed09c2608899342b7f0a89a4cc1fcc, type: 2}
---- !u!95 &3874844210501768951
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874844210501768944}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b6aeacab529296848a443d8061d585a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3874844210287718129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +214,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cf9cda0b5d5ce43ab0403c8e416dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiPath: {fileID: 3874844210287718129}

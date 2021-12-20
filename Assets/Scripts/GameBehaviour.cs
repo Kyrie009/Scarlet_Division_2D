@@ -7,10 +7,11 @@ public class GameBehaviour : MonoBehaviour
     //Managers
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
     protected static UIManager _UI { get { return UIManager.INSTANCE; } }
+    protected static DialogueManager _DM { get { return DialogueManager.INSTANCE; } }
+    protected static AudioManager _AM { get { return AudioManager.INSTANCE; } }
     //Player
     protected static Player _P { get { return Player.INSTANCE; } }
-
-
+    protected static PlayerMovement _PM { get { return PlayerMovement.INSTANCE; } }
 
     //Universal Functions
 

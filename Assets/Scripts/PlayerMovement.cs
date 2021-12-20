@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
+    //references
     public CharacterController2D controller;
     public Animator animator;
     public Animator weaponAnimator;
-
+    //Configs
     public float runSpeed = 5f;
     public float horizontalMove = 0f;
     bool jump = false;
@@ -56,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
+
     }
 
     public void OnLanding()
@@ -69,4 +71,5 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
+
 }

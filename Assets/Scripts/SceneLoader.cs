@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : GameBehaviour
 {
+    public AudioSource button;
     //Will Change Scene to the string passed in
     public void ChangeScene(string _sceneName)
     {
+        button.Play();
         SceneManager.LoadScene(_sceneName);
     }
     //Reloads the current scene we are in
@@ -18,7 +20,7 @@ public class SceneLoader : GameBehaviour
     }
     //Loads Title using string name
     public void ToTitleScene()
-    {
+    {       
         GameEvents.ReportGameStart();
         SceneManager.LoadScene("Title");
     }
@@ -26,6 +28,7 @@ public class SceneLoader : GameBehaviour
     //Loads Title using string name
     public void StartingScene()
     {
+        button.Play();
         GameEvents.ReportGamePlaying();
         SceneManager.LoadScene("StarterForest");
     }
@@ -39,6 +42,7 @@ public class SceneLoader : GameBehaviour
     //Quits our game
     public void QuitGame()
     {
+        button.Play();
         Application.Quit();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : GameBehaviour
 {
@@ -8,13 +9,27 @@ public class Enemy : GameBehaviour
     int health;
     int attack;
     int knockback;
+    public float attackDistance = 10f;
+
+    bool freeze = false;
   
-    // Start is called before the first frame update
     void Start()
     {
         Setup();
     }
-
+    private void Update()
+    {
+        float distToPlayer = Vector3.Distance(transform.position, _P.transform.position);
+        if (distToPlayer < attackDistance)
+        {
+            GetComponent<AIDestinationSetter>().target = _P.transform;
+        }
+        if (distToPlayer > attackDistance)
+        {
+            GetComponent<AIDestinationSetter>().target = null;
+        }
+    }
+    //Links up enemystats from the scriptableobject
     public void Setup()
     {
         health = enemyData.health;
@@ -52,9 +67,31 @@ public class Enemy : GameBehaviour
         yield return new WaitForSeconds(0.5f);
         this.GetComponent<SpriteRenderer>().color = Color.white; 
     }
-
+    //Check if enemy dead
     public bool IsDead()
     {
         return health <= 0;
+    }
+    //enemy movement disable
+    public void FreezeEnemy(bool _fstatus)
+    {
+        freeze = _fstatus;
+        if (freeze)
+        {
+            GetComponent<AIDestinationSetter>().enabled = false;
+        }
+        else
+        {
+            GetComponent<AIDestinationSetter>().enabled = true;
+        }
+    }
+    //Events
+    private void OnEnable()
+    {
+        GameEvents.OnFreezeEvent += FreezeEnemy;
+    }
+    private void OnDisable()
+    {
+        GameEvents.OnFreezeEvent -= FreezeEnemy;
     }
 }

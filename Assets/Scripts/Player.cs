@@ -14,6 +14,7 @@ public class Player : Singleton<Player>
     public float corruptionTimer;
     //Status Checks
     public bool isCorrupting = false;
+    public bool freeze = false;
 
     // Start is called before the first frame update
     void Start()
@@ -123,17 +124,33 @@ public class Player : Singleton<Player>
     {
         isCorrupting = false;
     }
+    //player movement disable
+    public void FreezePlayer(bool _fstatus)
+    {
+        freeze = _fstatus;
+        if (freeze)
+        {
+            _PM.enabled = false;                                   //disable movement input
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;   //disable physics
+            GetComponent<Animator>().SetFloat("Speed", 0);         //reset animation to idle  
+        }
+        else
+        {
+            _PM.enabled = true;
+        }       
+    }
     //Events
     private void OnEnable()
     {
         GameEvents.OnCorruptionStart += IsCorrupting;
         GameEvents.OnCorruptionStop += StopCorrupting;
+        GameEvents.OnFreezeEvent += FreezePlayer;
     }
     private void OnDisable()
     {
         GameEvents.OnCorruptionStart -= IsCorrupting;
         GameEvents.OnCorruptionStop -= StopCorrupting;
+        GameEvents.OnFreezeEvent -= FreezePlayer;
     }
-
 
 }

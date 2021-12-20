@@ -6,12 +6,16 @@ using TMPro;
 
 public class UIManager : Singleton<UIManager>
 {
+    //UI data
+    public string areaName;
     //UI
     public TMP_Text healthText;
     public TMP_Text corruptionText;
+    public TMP_Text areaText;
     //Visual
     public Slider healthBar;
     public Slider corruptionBar;
+    public Animator animator;
     //Screens
     public GameObject gameOverScreen;
     public GameObject menuScreen;
@@ -25,6 +29,7 @@ public class UIManager : Singleton<UIManager>
         menuScreen.SetActive(false);
         healthBar.maxValue = _P.maxHealth;
         corruptionBar.maxValue = _P.maxCorruption;
+        OpeningScreen();
     }
     private void Update()
     {
@@ -52,6 +57,19 @@ public class UIManager : Singleton<UIManager>
         float seconds = Mathf.FloorToInt(_timer % 60);
 
         corruptionText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //Display timer in minute:second format
+    }
+    //Transitionscreen animation
+    public void OpeningScreen()
+    {
+        areaText.text = areaName;
+        animator.SetTrigger("OpeningScene");
+
+    }
+    public void TransitionScreen()
+    {
+        areaText.text = areaName;
+        animator.SetTrigger("Transition");
+
     }
     //UI Navigation
     public void ShowPauseMenu()

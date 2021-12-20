@@ -16,6 +16,7 @@ public static class GameEvents
     public static event Action OnCorrupted = null;
     //Player
     public static event Action<Player> OnPlayerDied = null;
+    public static event Action<bool> OnFreezeEvent = null;
 
     //functions reported to by the scripts
     //GameStates
@@ -57,6 +58,10 @@ public static class GameEvents
     public static void ReportPlayerDied(Player _player)
     {
         OnPlayerDied?.Invoke(_player);
+    }
+    public static void ReportFreezeEvent(bool _fStatus)
+    {
+        OnFreezeEvent?.Invoke(_fStatus);
     }
 
 }

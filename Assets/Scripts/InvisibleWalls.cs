@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InvisibleWalls : GameBehaviour
 {
-    // Start is called before the first frame update
+    //Makes object invisible on initialisation
     void Start()
     {
         GetComponent<SpriteRenderer>().enabled = false;
